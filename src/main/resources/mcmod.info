@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ExoticPower",
+  "name": "ExoticPower(ExoticPower)",
+  "description": "A Minecraft Mod",
+  "version": "1.1.0",
+  "credits": "ExoticPower",
+  "logoFile": "",
+  "url": "",
+  "updateUrl": "",
+  "authors": [ "Darost" ],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": ["mod_MinecraftForge"]
+}
+]

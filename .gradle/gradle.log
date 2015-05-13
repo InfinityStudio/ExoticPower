@@ -1,0 +1,51 @@
+The assetDir is deprecated!  I actually just did all this generalizing stuff just now.. Use runDir instead! runDir set to eclipse/assets/..The assetDir is deprecated!  I actually just did all this generalizing stuff just now.. Use runDir instead! runDir set to eclipse/assets/..
+
+The runDir should be the location where you want MC to be run, usually he parent of the asset dirThe runDir should be the location where you want MC to be run, usually he parent of the asset dir
+
+****************************
+ Powered By MCP:             
+ http://mcp.ocean-labs.de/   
+ Searge, ProfMobius, Fesh0r, 
+ R4wk, ZeuX, IngisKahn, bspkrs
+ MCP Data version : unknown
+****************************
+:compileApiJava UP-TO-DATE
+:processApiResources UP-TO-DATE
+:apiClasses UP-TO-DATE
+:sourceMainJava
+:compileJavaH:\mod\forge-1.7.10-10.13.2.1291-src\build\sources\java\com\cfyifei\gui\containers\ContainerNmj.java:112: 警告：编码 GBK 的不可映射字符
+	            // 锟斤拷锟斤拷锟絊lot锟斤拷ID为0-2之锟斤拷锟绞憋拷颍锟斤拷锟狡凤拷突锟斤拷锟揭的憋拷锟斤拷锟叫ｏ拷锟斤拷锟斤拷胤锟斤拷锟?
+	                                                                               ^
+H:\mod\forge-1.7.10-10.13.2.1291-src\build\sources\java\com\cfyifei\gui\containers\ContainerNmj.java:121: 警告：编码 GBK 的不可映射字符
+	            // 锟斤拷锟斤拷锟斤拷锟揭的憋拷锟斤拷锟绞憋拷锟斤拷锟狡凤拷偷锟斤拷锟揭的匡拷锟斤拷锟斤拷锟?
+	                                                           ^
+H:\mod\forge-1.7.10-10.13.2.1291-src\build\sources\java\com\cfyifei\gui\containers\ContainerNmj.java:129: 警告：编码 GBK 的不可映射字符
+	            // 锟斤拷锟斤拷锟斤拷锟揭的匡拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟狡凤拷偷锟斤拷锟斤拷锟斤拷锟?
+	                                                         ^
+H:\mod\forge-1.7.10-10.13.2.1291-src\build\sources\java\com\cfyifei\item\ModItem.java:97: 警告：编码 GBK 的不可映射字符
+		//锟斤拷锟?
+		      ^
+注意：某些输入文件使用或覆盖了已过时的 API。
+注意：要了解详细信息，请使用 -Xlint:deprecation 重新编译。
+注意：某些输入文件使用了未经检查或不安全的操作。
+注意：要了解详细信息，请使用 -Xlint:unchecked 重新编译。
+
+:processResources
+:classes
+:jar
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
+:extractMcpData UP-TO-DATE
+:getVersionJson
+:extractUserDev UP-TO-DATE
+:genSrgs SKIPPED
+:reobf
+:assemble
+:check UP-TO-DATE
+:build
+
+BUILD SUCCESSFUL
+
+Total time: 5 mins 0.497 secs
