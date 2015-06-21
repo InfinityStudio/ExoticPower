@@ -1,16 +1,16 @@
 [
 {
-  "modid": "ExoticPower",
-  "name": "ExoticPower(ExoticPower)",
-  "description": "A Minecraft Mod",
-  "version": "1.1.0",
-  "credits": "ExoticPower",
-  "logoFile": "",
+  "modid": "exoticpower",
+  "name": "ExoticPower",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authors": [ "Darost" ],
-  "parent":"",
+  "authorList": ["Infinity Studio"],
+  "credits": "",
+  "logoFile": "",
   "screenshots": [],
-  "dependencies": ["mod_MinecraftForge"]
+  "dependencies": []
 }
 ]
