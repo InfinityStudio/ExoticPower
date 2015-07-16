@@ -11,7 +11,7 @@ public class EPItems {
 	public static Item Wrench = new ItemWrench();
 	
 	public static void init() {
-		GameRegistry.registerItem(Wrench, "wrench");
+		GameRegistry.registerItem(Wrench, "epwrench");
 	}
 	
 }

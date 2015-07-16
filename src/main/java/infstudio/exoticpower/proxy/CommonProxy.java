@@ -1,5 +1,6 @@
 package infstudio.exoticpower.proxy;
 
+import infstudio.exoticpower.EPGenerator;
 import infstudio.exoticpower.ExoticPower;
 import infstudio.exoticpower.block.EPBlocks;
 import infstudio.exoticpower.item.EPItems;
@@ -21,6 +22,7 @@ public class CommonProxy {
     	EPBlocks.init();
 		EPItems.init(); 
 		GameRegistry.registerTileEntity(TileEntityTestGui.class, "TileEntityTestGui");
+		//GameRegistry.registerWorldGenerator(new EPGenerator(), 0);
 		NetworkRegistry.INSTANCE.registerGuiHandler(ExoticPower.instance, new GuiHandler());
     }
 	 

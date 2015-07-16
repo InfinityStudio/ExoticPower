@@ -29,7 +29,6 @@ public class ExoticPower {
     @EventHandler
     public void init(FMLInitializationEvent event) {
     	proxy.init(event);
-        proxy.init(event);
     }
  
     @EventHandler
