@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ExoticPower",
+  "name": "ExoticPower",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Infinity Studio"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
