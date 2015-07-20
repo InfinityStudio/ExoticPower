@@ -1,2 +1,3 @@
 itemGroup.ExoticPower=ExoticPower
-item.epwrench=Wrench
+item.epwrench.name=Wrench
+tile.pipediamond.name=Diamond pipe

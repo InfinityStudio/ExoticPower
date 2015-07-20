@@ -1,2 +1,3 @@
 itemGroup.ExoticPower=异域之能
-item.epwrench=扳手
+item.epwrench.name=扳手
+tile.pipediamond.name=钻石管道

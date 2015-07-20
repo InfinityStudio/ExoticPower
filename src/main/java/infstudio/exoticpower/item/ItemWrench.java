@@ -25,6 +25,7 @@ public class ItemWrench extends Item implements IToolWrench{
 	public ItemWrench() {
 		super();
 		this.setCreativeTab(ExoticPower.ept);
+		this.setUnlocalizedName("epwrench");
 		setFull3D();
 		setMaxStackSize(1);
 		shiftRotations.add(BlockLever.class);
