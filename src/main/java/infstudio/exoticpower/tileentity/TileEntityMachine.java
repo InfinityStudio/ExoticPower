@@ -1,5 +1,6 @@
 package infstudio.exoticpower.tileentity;
 
+import infstudio.exoticpower.api.energy.IEnergyProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -7,13 +8,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBox, IInventory{
+public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBox, IInventory, IEnergyProvider {
 	
-	private ItemStack tstack[];
-	public int tableBurnTime = 0;
-	public int furnaceCookTime = 0;
+	public ItemStack tstack[];
+	public int furnaceBurnTime;
+	public int currentItemBurnTime;
+    public int cookTime;
+    public int totalCookTime;
+    
+    public int energy;
+    public int capacity;
+	public int maxExtract;
 	
 	@Override
 	public String getName() {
@@ -126,14 +134,41 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
 
 	@Override
 	public int getField(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		switch (id)
+        {
+            case 0:
+                return this.furnaceBurnTime;
+            case 1:
+                return this.currentItemBurnTime;
+            case 2:
+                return this.cookTime;
+            case 3:
+                return this.totalCookTime;
+            case 4:
+            	return this.energy;
+            default:
+                return 0;
+        }
 	}
 
 	@Override
 	public void setField(int id, int value) {
-		// TODO Auto-generated method stub
-		
+		switch (id)
+        {
+            case 0:
+                this.furnaceBurnTime = value;
+                break;
+            case 1:
+                this.currentItemBurnTime = value;
+                break;
+            case 2:
+                this.cookTime = value;
+                break;
+            case 3:
+                this.totalCookTime = value;
+            case 4:
+            	this.energy = value;
+        }
 	}
 
 	@Override
@@ -154,9 +189,10 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
 		
 	}
 	
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
     {
-        super.readFromNBT(compound);
+		super.readFromNBT(compound);
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.tstack = new ItemStack[this.getSizeInventory()];
 
@@ -170,27 +206,70 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
                 this.tstack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.tableBurnTime = compound.getShort("tableBurnTime");
-        this.furnaceCookTime = compound.getShort("furnaceCookTime");
-    }
-	
-	public void writeToNBT(NBTTagCompound compound)
-    {
-    	super.writeToNBT(compound);
-    	compound.setShort("tableBurnTime", (short)this.tableBurnTime);
-    	compound.setShort("furnaceCookTime", (short)this.furnaceCookTime);
-        NBTTagList var2 = new NBTTagList();
-        for (int var3 = 0; var3 < this.tstack.length; ++var3)
-        {
-            if (this.tstack[var3] != null)
-            {
-                NBTTagCompound var4 = new NBTTagCompound();
-                var4.setByte("Slot", (byte)var3);
-                this.tstack[var3].writeToNBT(var4);
-                var2.appendTag(var4);
-            }
-        }
-        compound.setTag("Items", var2);
+
+        this.furnaceBurnTime = compound.getShort("BurnTime");
+        this.cookTime = compound.getShort("CookTime");
+        this.totalCookTime = compound.getShort("CookTimeTotal");
+        this.currentItemBurnTime = getItemBurnTime(this.tstack[1]);
+        this.energy = compound.getInteger("Energy");
     }
 
+	public static int getItemBurnTime(ItemStack itemStack) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound compound)
+    {
+		super.writeToNBT(compound);
+        compound.setShort("BurnTime", (short)this.furnaceBurnTime);
+        compound.setShort("CookTime", (short)this.cookTime);
+        compound.setShort("CookTimeTotal", (short)this.totalCookTime);
+        compound.setInteger("Energy", this.energy);
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.tstack.length; ++i)
+        {
+            if (this.tstack[i] != null)
+            {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte)i);
+                this.tstack[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        compound.setTag("Items", nbttaglist);
+    }
+
+	public boolean isBurning()
+    {
+        return this.furnaceBurnTime > 0;
+    }
+
+	@Override
+	public boolean canConnectEnergy(EnumFacing from) {
+		return true;
+	}
+
+	@Override
+	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
+		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
+		if (!simulate) {
+			energy -= energyExtracted;
+		}
+		return energyExtracted;
+	}
+
+	@Override
+	public int getEnergyStored(EnumFacing from) {
+		return this.energy;
+	}
+
+	@Override
+	public int getMaxEnergyStored(EnumFacing from) {
+		return this.capacity;
+	}
+	
 }

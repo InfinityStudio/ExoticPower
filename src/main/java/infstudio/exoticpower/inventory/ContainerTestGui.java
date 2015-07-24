@@ -40,13 +40,11 @@ public class ContainerTestGui extends Container{
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
     public void addCraftingToCrafters(ICrafting par1iCrafting) {
-            // TODO Auto-generated method stub
             super.addCraftingToCrafters(par1iCrafting);
             par1iCrafting.sendProgressBarUpdate(this, 0, this.tile.tableBurnTime);
             par1iCrafting.sendProgressBarUpdate(this, 1, this.tile.furnaceCookTime);

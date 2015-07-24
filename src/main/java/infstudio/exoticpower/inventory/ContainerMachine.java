@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerMachine extends Container{
 
-	private int lastMaxBurnTime;
-	private int lastTableBurnTime;
+	public int lastMaxBurnTime;
+	public int lastTableBurnTime;
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {

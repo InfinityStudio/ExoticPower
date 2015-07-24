@@ -11,11 +11,13 @@ public class EPBlocks {
 
 	public static Block testgui = new BlockTestGui();
 	public static Block pipediamond = new PipeDiamond();
+	public static Block elementgenerator = new MachineElementGenerator();
 	
 	public static final ArrayList<Block> blockList = new ArrayList<Block>();
 	
 	public static void init() {
 		GameRegistry.registerBlock(testgui, "testgui");
 		GameRegistry.registerBlock(pipediamond, "pipediamond");
+		GameRegistry.registerBlock(elementgenerator, "elementgenerator");
 	}
 }

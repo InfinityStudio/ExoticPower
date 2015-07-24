@@ -1,4 +1,4 @@
-package infstudio.exoticpower.api.tools;
+package infstudio.exoticpower.api.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;

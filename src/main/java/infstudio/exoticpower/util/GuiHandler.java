@@ -1,8 +1,8 @@
 package infstudio.exoticpower.util;
 
-import infstudio.exoticpower.gui.inventory.GuiTestGui;
-import infstudio.exoticpower.inventory.ContainerTestGui;
-import infstudio.exoticpower.tileentity.TileEntityTestGui;
+import infstudio.exoticpower.gui.inventory.*;
+import infstudio.exoticpower.inventory.*;
+import infstudio.exoticpower.tileentity.*;
 import infstudio.exoticpower.GuiID;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
@@ -13,24 +13,26 @@ public class GuiHandler implements IGuiHandler{
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		// TODO Auto-generated method stub
 		BlockPos bp = new BlockPos(x, y, z);
 		switch(ID)
         {
         case GuiID.GUI_TG:
         	return new ContainerTestGui(player.inventory, (TileEntityTestGui)world.getTileEntity(bp));
+        case GuiID.GUI_EG:
+        	return new ContainerElementGenerator(player.inventory, (TileEntityElementGenerator)world.getTileEntity(bp));
         }
         return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		// TODO Auto-generated method stub
 		BlockPos bp = new BlockPos(x, y, z);
 		switch(ID)
 		{
 		case GuiID.GUI_TG:
 			return new GuiTestGui(player.inventory, (TileEntityTestGui) world.getTileEntity(bp));
+		case GuiID.GUI_EG:
+        	return new GuiElementGenerator(player.inventory, (TileEntityElementGenerator)world.getTileEntity(bp));
 		}
 		return null;
 	}

@@ -1,7 +1,7 @@
 package infstudio.exoticpower.item;
 
 import infstudio.exoticpower.ExoticPower;
-import infstudio.exoticpower.api.tools.IToolWrench;
+import infstudio.exoticpower.api.item.IToolWrench;
 
 import java.util.HashSet;
 import java.util.Set;

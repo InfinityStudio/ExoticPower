@@ -4,7 +4,7 @@ import infstudio.exoticpower.EPGenerator;
 import infstudio.exoticpower.ExoticPower;
 import infstudio.exoticpower.block.EPBlocks;
 import infstudio.exoticpower.item.EPItems;
-import infstudio.exoticpower.tileentity.TileEntityTestGui;
+import infstudio.exoticpower.tileentity.*;
 import infstudio.exoticpower.util.GuiHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -22,6 +22,7 @@ public class CommonProxy {
     	EPBlocks.init();
 		EPItems.init(); 
 		GameRegistry.registerTileEntity(TileEntityTestGui.class, "TileEntityTestGui");
+		GameRegistry.registerTileEntity(TileEntityElementGenerator.class, "TileEntityElementGenerator");
 		//GameRegistry.registerWorldGenerator(new EPGenerator(), 0);
 		NetworkRegistry.INSTANCE.registerGuiHandler(ExoticPower.instance, new GuiHandler());
     }

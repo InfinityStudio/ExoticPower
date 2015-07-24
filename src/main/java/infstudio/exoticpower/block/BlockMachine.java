@@ -13,13 +13,13 @@ import net.minecraft.world.World;
 
 public class BlockMachine extends BlockContainer{
 
-	static int Guiid;
+	public static int Guiid;
 	
-	protected BlockMachine() {
+	public BlockMachine() {
 		super(Material.rock);
 		this.setCreativeTab(ExoticPower.ept);
 		this.setHardness(0.5f);
-		this.setStepSound(soundTypeGlass);
+		this.setStepSound(soundTypeStone);
 	}
 
 	@Override
