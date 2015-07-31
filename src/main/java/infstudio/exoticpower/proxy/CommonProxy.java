@@ -23,7 +23,8 @@ public class CommonProxy {
 		EPItems.init(); 
 		GameRegistry.registerTileEntity(TileEntityTestGui.class, "TileEntityTestGui");
 		GameRegistry.registerTileEntity(TileEntityElementGenerator.class, "TileEntityElementGenerator");
-		//GameRegistry.registerWorldGenerator(new EPGenerator(), 0);
+		GameRegistry.registerTileEntity(TileEntityPuncher.class, "TileEntityPuncher");
+		GameRegistry.registerWorldGenerator(new EPGenerator(), 0);
 		NetworkRegistry.INSTANCE.registerGuiHandler(ExoticPower.instance, new GuiHandler());
     }
 	 

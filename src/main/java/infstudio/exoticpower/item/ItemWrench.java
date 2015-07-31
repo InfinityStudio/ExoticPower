@@ -32,6 +32,7 @@ public class ItemWrench extends Item implements IToolWrench{
 		shiftRotations.add(BlockButton.class);
 		shiftRotations.add(BlockChest.class);
 		setHarvestLevel("wrench", 0);
+		EPItems.itemList.add(this);
 	}
 
 	private boolean isShiftRotation(Class<? extends Block> class1) {

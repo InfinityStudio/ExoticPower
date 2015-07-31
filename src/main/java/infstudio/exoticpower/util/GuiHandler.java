@@ -16,10 +16,12 @@ public class GuiHandler implements IGuiHandler{
 		BlockPos bp = new BlockPos(x, y, z);
 		switch(ID)
         {
-        case GuiID.GUI_TG:
-        	return new ContainerTestGui(player.inventory, (TileEntityTestGui)world.getTileEntity(bp));
-        case GuiID.GUI_EG:
-        	return new ContainerElementGenerator(player.inventory, (TileEntityElementGenerator)world.getTileEntity(bp));
+        	case GuiID.GUI_TG:
+        		return new ContainerTestGui(player.inventory, (TileEntityTestGui)world.getTileEntity(bp));
+        	case GuiID.GUI_EG:
+        		return new ContainerElementGenerator(player.inventory, (TileEntityElementGenerator)world.getTileEntity(bp));
+        	case GuiID.GUI_PC:
+        		return new ContainerPuncher(player.inventory, (TileEntityPuncher)world.getTileEntity(bp));
         }
         return null;
 	}
@@ -29,10 +31,12 @@ public class GuiHandler implements IGuiHandler{
 		BlockPos bp = new BlockPos(x, y, z);
 		switch(ID)
 		{
-		case GuiID.GUI_TG:
-			return new GuiTestGui(player.inventory, (TileEntityTestGui) world.getTileEntity(bp));
-		case GuiID.GUI_EG:
-        	return new GuiElementGenerator(player.inventory, (TileEntityElementGenerator)world.getTileEntity(bp));
+			case GuiID.GUI_TG:
+				return new GuiTestGui(player.inventory, (TileEntityTestGui) world.getTileEntity(bp));
+			case GuiID.GUI_EG:
+				return new GuiElementGenerator(player.inventory, (TileEntityElementGenerator)world.getTileEntity(bp));
+			case GuiID.GUI_PC:
+				return new GuiPuncher(player.inventory, (TileEntityPuncher) world.getTileEntity(bp));
 		}
 		return null;
 	}

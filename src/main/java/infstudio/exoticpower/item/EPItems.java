@@ -6,12 +6,18 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class EPItems {
-
+	
 	public static final ArrayList<Item> itemList = new ArrayList<Item>();
-	public static Item Wrench = new ItemWrench();
+	public static Item soulfire,powergun,wrench,enrichmentcrystal;
 	
 	public static void init() {
-		GameRegistry.registerItem(Wrench, "epwrench");
+		soulfire = new ItemSoulFire();
+		powergun = new ItemPowerGun();
+		wrench = new ItemWrench();
+		enrichmentcrystal = new ItemEnrichmentCrystal();
+		for (Item item : itemList) {
+			GameRegistry.registerItem(item, item.getUnlocalizedName());
+		}
 	}
 	
 }

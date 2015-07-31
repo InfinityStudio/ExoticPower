@@ -1,6 +1,5 @@
 package infstudio.exoticpower.tileentity;
 
-import infstudio.exoticpower.api.energy.IEnergyProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -11,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBox, IInventory, IEnergyProvider {
+public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBox, IInventory {
 	
 	public ItemStack tstack[];
 	public int furnaceBurnTime;
@@ -22,6 +21,7 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
     public int energy;
     public int capacity;
 	public int maxExtract;
+	public int maxReceive;
 	
 	@Override
 	public String getName() {
@@ -247,29 +247,5 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
     {
         return this.furnaceBurnTime > 0;
     }
-
-	@Override
-	public boolean canConnectEnergy(EnumFacing from) {
-		return true;
-	}
-
-	@Override
-	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
-		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
-		if (!simulate) {
-			energy -= energyExtracted;
-		}
-		return energyExtracted;
-	}
-
-	@Override
-	public int getEnergyStored(EnumFacing from) {
-		return this.energy;
-	}
-
-	@Override
-	public int getMaxEnergyStored(EnumFacing from) {
-		return this.capacity;
-	}
 	
 }

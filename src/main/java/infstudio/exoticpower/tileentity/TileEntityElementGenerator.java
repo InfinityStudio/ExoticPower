@@ -1,5 +1,7 @@
 package infstudio.exoticpower.tileentity;
 
+import infstudio.exoticpower.api.energy.IEnergyProvider;
+import infstudio.exoticpower.item.ItemEnergyContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -10,8 +12,9 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.EnumFacing;
 
-public class TileEntityElementGenerator extends TileEntityMachine{
+public class TileEntityElementGenerator extends TileEntityMachine implements IEnergyProvider{
 	
 	public TileEntityElementGenerator() {
 		this.tstack = new ItemStack[2];
@@ -45,6 +48,14 @@ public class TileEntityElementGenerator extends TileEntityMachine{
 	    				setInventorySlotContents(1, null);
 	    			}
 				}
+			}
+		}
+		
+		ItemStack energyItem = this.getStackInSlot(0);
+		if (energyItem != null) {
+			if (energyItem.getItem() != null && energyItem.getItem() instanceof ItemEnergyContainer && this.energy > 0 && energyItem.getItemDamage() > 0) {
+				--this.energy;
+				energyItem.setItemDamage(energyItem.getItemDamage() - 1);
 			}
 		}
 	}
@@ -89,5 +100,30 @@ public class TileEntityElementGenerator extends TileEntityMachine{
             return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(p_145952_0_);
         }
     }
+	
+
+	@Override
+	public boolean canConnectEnergy(EnumFacing from) {
+		return true;
+	}
+
+	@Override
+	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
+		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
+		if (!simulate) {
+			energy -= energyExtracted;
+		}
+		return energyExtracted;
+	}
+
+	@Override
+	public int getEnergyStored(EnumFacing from) {
+		return this.energy;
+	}
+
+	@Override
+	public int getMaxEnergyStored(EnumFacing from) {
+		return this.capacity;
+	}
 	
 }

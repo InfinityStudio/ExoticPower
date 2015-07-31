@@ -7,17 +7,23 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class EPBlocks {
-
-	public static Block testgui = new BlockTestGui();
-	public static Block pipediamond = new PipeDiamond();
-	public static Block elementgenerator = new MachineElementGenerator();
+public class EPBlocks{
 	
 	public static final ArrayList<Block> blockList = new ArrayList<Block>();
+	public static Block soulore, assemblymachine, elementgenerator, nodedetector, puncher,
+		teleporter, diamondpipe,testgui;
 	
 	public static void init() {
-		GameRegistry.registerBlock(testgui, "testgui");
-		GameRegistry.registerBlock(pipediamond, "pipediamond");
-		GameRegistry.registerBlock(elementgenerator, "elementgenerator");
+		soulore = new BlockSoulOre();
+		assemblymachine = new MachineAssembly();
+		elementgenerator = new MachineElementGenerator();
+		nodedetector = new MachineNodeDetector();
+		puncher = new MachinePuncher();
+		teleporter = new MachineTeleporter();
+		diamondpipe = new PipeDiamond();
+		testgui = new BlockTestGui();
+		for (Block block : blockList) {
+			GameRegistry.registerBlock(block, block.getUnlocalizedName());
+		}
 	}
 }

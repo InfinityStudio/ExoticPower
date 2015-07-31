@@ -1,4 +1,12 @@
 itemGroup.ExoticPower=ExoticPower
+item.soulfire.name=Soul Fire
 item.epwrench.name=Wrench
+item.enrichmentcrystal.name=Enrichment Crystal
+item.powergun.name=Power Gun
+tile.soulore.name=Soul Ore
 tile.pipediamond.name=Diamond pipe
 tile.elementgenerator.name=Element Generator
+tile.puncher.name=Magic Puncher
+tile.teleporter.name=Telepoter
+tile.nodedetector.name=Node Detector
+tile.assemblymachine.name=Assembly Machine

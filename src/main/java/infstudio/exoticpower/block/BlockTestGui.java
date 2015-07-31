@@ -19,6 +19,7 @@ public class BlockTestGui extends BlockContainer {
 	protected BlockTestGui() {
 		super(Material.rock);
 		this.setCreativeTab(ExoticPower.ept);
+		EPBlocks.blockList.add(this);
 	}
 
 	@Override

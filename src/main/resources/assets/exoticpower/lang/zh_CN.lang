@@ -1,4 +1,12 @@
 itemGroup.ExoticPower=异域之能
+item.soulfire.name=灵魂火焰
 item.epwrench.name=扳手
+item.enrichmentcrystal.name=富集水晶
+item.powergun.name=能量枪
+tile.soulore.name=灵魂矿石
 tile.pipediamond.name=钻石管道
 tile.elementgenerator.name=元素发电机
+tile.puncher.name=魔力冲床
+tile.teleporter.name=传送机
+tile.nodedetector.name=节点探测机
+tile.assemblymachine.name=组装机
