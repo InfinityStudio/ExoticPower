@@ -1,6 +1,6 @@
 package infstudio.exoticpower.tileentity;
 
-import infstudio.exoticpower.api.energy.IEnergyProvider;
+import cn.academy.energy.api.block.IWirelessGenerator;
 import infstudio.exoticpower.item.ItemEnergyContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,11 +14,10 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityElementGenerator extends TileEntityMachine implements IEnergyProvider{
+public class TileEntityElementGenerator extends TileEntityGenerator implements IWirelessGenerator{
 	
 	public TileEntityElementGenerator() {
-		this.tstack = new ItemStack[2];
-		this.capacity = 500;
+		super("ElementGenerator",2, 500, 20);
 	}
 	
 	@Override
@@ -100,30 +99,23 @@ public class TileEntityElementGenerator extends TileEntityMachine implements IEn
             return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(p_145952_0_);
         }
     }
-	
 
 	@Override
-	public boolean canConnectEnergy(EnumFacing from) {
-		return true;
+	public double getProvidedEnergy(double req) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
-		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
-		if (!simulate) {
-			energy -= energyExtracted;
-		}
-		return energyExtracted;
+	public double getBandwidth() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int getEnergyStored(EnumFacing from) {
-		return this.energy;
-	}
-
-	@Override
-	public int getMaxEnergyStored(EnumFacing from) {
-		return this.capacity;
+	public double getGeneration(double required) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

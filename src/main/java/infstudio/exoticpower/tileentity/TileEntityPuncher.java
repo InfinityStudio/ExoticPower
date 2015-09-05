@@ -1,6 +1,6 @@
 package infstudio.exoticpower.tileentity;
 
-import infstudio.exoticpower.api.energy.IEnergyReceiver;
+import cn.academy.energy.api.block.IWirelessReceiver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityPuncher extends TileEntityMachine implements IUpdatePlayerListBox, IInventory, IEnergyReceiver{
+public class TileEntityPuncher extends TileEntityMachine implements IUpdatePlayerListBox, IInventory, IWirelessReceiver{
 
 	public TileEntityPuncher() {
 		this.tstack = new ItemStack[3];
@@ -19,29 +19,29 @@ public class TileEntityPuncher extends TileEntityMachine implements IUpdatePlaye
 	public void update() {
 		
 	}
-	
+
 	@Override
-	public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate) {
-		int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
-		if (!simulate) {
-			energy += energyReceived;
-		}
-		return energyReceived;
+	public double getRequiredEnergy() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public boolean canConnectEnergy(EnumFacing from) {
-		return true;
+	public double injectEnergy(double amt) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int getEnergyStored(EnumFacing from) {
-		return this.energy;
+	public double pullEnergy(double amt) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int getMaxEnergyStored(EnumFacing from) {
-		return this.capacity;
+	public double getBandwidth() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

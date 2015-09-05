@@ -13,20 +13,16 @@ import net.minecraft.util.IChatComponent;
 public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBox, IInventory {
 	
 	public ItemStack tstack[];
-	public int furnaceBurnTime;
-	public int currentItemBurnTime;
-    public int cookTime;
-    public int totalCookTime;
-    
-    public int energy;
-    public int capacity;
-	public int maxExtract;
-	public int maxReceive;
+    public String name;
+	
+	public TileEntityMachine(String name, int size) {
+		this.name = name;
+		tstack = new ItemStack[size];
+	}
 	
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	@Override
@@ -133,45 +129,6 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
 	}
 
 	@Override
-	public int getField(int id) {
-		switch (id)
-        {
-            case 0:
-                return this.furnaceBurnTime;
-            case 1:
-                return this.currentItemBurnTime;
-            case 2:
-                return this.cookTime;
-            case 3:
-                return this.totalCookTime;
-            case 4:
-            	return this.energy;
-            default:
-                return 0;
-        }
-	}
-
-	@Override
-	public void setField(int id, int value) {
-		switch (id)
-        {
-            case 0:
-                this.furnaceBurnTime = value;
-                break;
-            case 1:
-                this.currentItemBurnTime = value;
-                break;
-            case 2:
-                this.cookTime = value;
-                break;
-            case 3:
-                this.totalCookTime = value;
-            case 4:
-            	this.energy = value;
-        }
-	}
-
-	@Override
 	public int getFieldCount() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -193,25 +150,13 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
 	public void readFromNBT(NBTTagCompound compound)
     {
 		super.readFromNBT(compound);
-        NBTTagList nbttaglist = compound.getTagList("Items", 10);
-        this.tstack = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
-        {
-            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
-
-            if (b0 >= 0 && b0 < this.tstack.length)
-            {
-                this.tstack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-            }
-        }
-
-        this.furnaceBurnTime = compound.getShort("BurnTime");
-        this.cookTime = compound.getShort("CookTime");
-        this.totalCookTime = compound.getShort("CookTimeTotal");
-        this.currentItemBurnTime = getItemBurnTime(this.tstack[1]);
-        this.energy = compound.getInteger("Energy");
+    	NBTTagCompound tag = compound.getCompoundTag("inventory");
+    	for(int i = 0; i < tstack.length; ++i) {
+    		String name = "" + i;
+    		if(tag.hasKey(name)) {
+    			tstack[i] = ItemStack.loadItemStackFromNBT(tag.getCompoundTag(name));
+    		}
+    	}
     }
 
 	public static int getItemBurnTime(ItemStack itemStack) {
@@ -223,29 +168,28 @@ public class TileEntityMachine extends TileEntity implements IUpdatePlayerListBo
 	public void writeToNBT(NBTTagCompound compound)
     {
 		super.writeToNBT(compound);
-        compound.setShort("BurnTime", (short)this.furnaceBurnTime);
-        compound.setShort("CookTime", (short)this.cookTime);
-        compound.setShort("CookTimeTotal", (short)this.totalCookTime);
-        compound.setInteger("Energy", this.energy);
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.tstack.length; ++i)
-        {
-            if (this.tstack[i] != null)
-            {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
-                this.tstack[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
-            }
-        }
-
-        compound.setTag("Items", nbttaglist);
+    	NBTTagCompound tag = new NBTTagCompound();
+    	for(int i = 0; i < tstack.length; ++i) {
+    		if(tstack[i] != null) {
+    			NBTTagCompound tag2 = new NBTTagCompound();
+    			tstack[i].writeToNBT(tag2);
+    			tag.setTag("" + i, tag2);
+    		}
+    	}
+    	
+    	compound.setTag("inventory", tag);
     }
 
-	public boolean isBurning()
-    {
-        return this.furnaceBurnTime > 0;
-    }
+	@Override
+	public int getField(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
