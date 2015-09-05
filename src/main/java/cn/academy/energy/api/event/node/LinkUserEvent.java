@@ -2,8 +2,8 @@
  * Copyright (c) Lambda Innovation, 2013-2015
  * 鏈綔鍝佺増鏉冪敱Lambda Innovation鎵�鏈夈��
  * http://www.li-dev.cn/
- *
- * This project is open-source, and it is distributed under 
+ * <p/>
+ * This project is open-source, and it is distributed under
  * the terms of GNU General Public License. You can modify
  * and distribute freely as long as you follow the license.
  * 鏈」鐩槸涓�涓紑婧愰」鐩紝涓旈伒寰狦NU閫氱敤鍏叡鎺堟潈鍗忚銆�
@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.eventhandler.Cancelable;
 public class LinkUserEvent extends WirelessUserEvent {
 
     public final IWirelessNode node;
-    
+
     public LinkUserEvent(IWirelessTile _tile, IWirelessNode _node) {
         super(_tile);
         node = _node;

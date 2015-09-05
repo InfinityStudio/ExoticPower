@@ -2,7 +2,7 @@
  * Copyright (c) Lambda Innovation, 2013-2015
  * 本作品版权由Lambda Innovation所有。
  * http://www.li-dev.cn/
- *
+ * <p/>
  * This project is open-source, and it is distributed under
  * the terms of GNU General Public License. You can modify
  * and distribute freely as long as you follow the license.
@@ -12,61 +12,61 @@
  */
 package cn.academy.energy.api;
 
-import net.minecraft.tileentity.TileEntity;
 import cn.academy.energy.api.block.IWirelessNode;
 import cn.academy.support.EnergyBlockHelper;
 import cn.academy.support.EnergyBlockHelper.IEnergyBlockManager;
 import cn.annoreg.core.Registrant;
+import net.minecraft.tileentity.TileEntity;
 
 /**
  * @author WeAthFolD
  */
 @Registrant
 public class IFNodeManager implements IEnergyBlockManager {
-	
-	public static IFNodeManager instance = new IFNodeManager();
-	
-	private IFNodeManager() {
-		EnergyBlockHelper.register(this);
-	}
 
-	@Override
-	public boolean isSupported(TileEntity tile) {
-		return tile instanceof IWirelessNode;
-	}
+    public static IFNodeManager instance = new IFNodeManager();
 
-	@Override
-	public double getEnergy(TileEntity tile) {
-		return ((IWirelessNode)tile).getEnergy();
-	}
+    private IFNodeManager() {
+        EnergyBlockHelper.register(this);
+    }
 
-	@Override
-	public void setEnergy(TileEntity tile, double energy) {
-		((IWirelessNode)tile).setEnergy(energy);
-	}
+    @Override
+    public boolean isSupported(TileEntity tile) {
+        return tile instanceof IWirelessNode;
+    }
 
-	@Override
-	public double charge(TileEntity tile, double amt, boolean ignoreBandwidth) {
-		IWirelessNode node = ((IWirelessNode)tile);
-		double max = node.getMaxEnergy() - node.getEnergy();
-		double chg = Math.min(amt, max);
-		if(!ignoreBandwidth)
-			chg = Math.min(node.getBandwidth(), chg);
-		
-		node.setEnergy(node.getEnergy() + chg);
-		return amt - chg;
-	}
+    @Override
+    public double getEnergy(TileEntity tile) {
+        return ((IWirelessNode) tile).getEnergy();
+    }
 
-	@Override
-	public double pull(TileEntity tile, double amt, boolean ignoreBandwidth) {
-		IWirelessNode node = (IWirelessNode) tile;
-		double max = node.getEnergy();
-		double pull = Math.min(max, amt);
-		if(!ignoreBandwidth)
-			pull = Math.min(node.getBandwidth(), pull);
-		
-		node.setEnergy(node.getEnergy() - pull);
-		return pull;
-	}
+    @Override
+    public void setEnergy(TileEntity tile, double energy) {
+        ((IWirelessNode) tile).setEnergy(energy);
+    }
+
+    @Override
+    public double charge(TileEntity tile, double amt, boolean ignoreBandwidth) {
+        IWirelessNode node = ((IWirelessNode) tile);
+        double max = node.getMaxEnergy() - node.getEnergy();
+        double chg = Math.min(amt, max);
+        if (!ignoreBandwidth)
+            chg = Math.min(node.getBandwidth(), chg);
+
+        node.setEnergy(node.getEnergy() + chg);
+        return amt - chg;
+    }
+
+    @Override
+    public double pull(TileEntity tile, double amt, boolean ignoreBandwidth) {
+        IWirelessNode node = (IWirelessNode) tile;
+        double max = node.getEnergy();
+        double pull = Math.min(max, amt);
+        if (!ignoreBandwidth)
+            pull = Math.min(node.getBandwidth(), pull);
+
+        node.setEnergy(node.getEnergy() - pull);
+        return pull;
+    }
 
 }

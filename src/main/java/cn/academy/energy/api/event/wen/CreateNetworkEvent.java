@@ -2,8 +2,8 @@
  * Copyright (c) Lambda Innovation, 2013-2015
  * 本作品版权由Lambda Innovation所有。
  * http://www.li-dev.cn/
- *
- * This project is open-source, and it is distributed under 
+ * <p/>
+ * This project is open-source, and it is distributed under
  * the terms of GNU General Public License. You can modify
  * and distribute freely as long as you follow the license.
  * 本项目是一个开源项目，且遵循GNU通用公共授权协议。
@@ -12,9 +12,9 @@
  */
 package cn.academy.energy.api.event.wen;
 
-import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import cn.academy.energy.api.block.IWirelessMatrix;
 import cn.academy.energy.api.event.WirelessEvent;
+import net.minecraftforge.fml.common.eventhandler.Cancelable;
 
 /**
  * Fired whenever you want to create an wireless network.
@@ -27,7 +27,7 @@ public class CreateNetworkEvent extends WirelessEvent {
     public final boolean isEncrypted;
     public final String ssid;
     public final String pwd;
-    
+
     /**
      * Non-encryption creation
      */
@@ -38,7 +38,7 @@ public class CreateNetworkEvent extends WirelessEvent {
         isEncrypted = false;
         pwd = "";
     }
-    
+
     /**
      * Encrypted creation
      */
@@ -49,5 +49,5 @@ public class CreateNetworkEvent extends WirelessEvent {
         isEncrypted = true;
         pwd = _pwd;
     }
-    
+
 }

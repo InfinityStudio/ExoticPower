@@ -2,8 +2,8 @@
  * Copyright (c) Lambda Innovation, 2013-2015
  * 本作品版权由Lambda Innovation所有。
  * http://www.li-dev.cn/
- *
- * This project is open-source, and it is distributed under  
+ * <p/>
+ * This project is open-source, and it is distributed under
  * the terms of GNU General Public License. You can modify
  * and distribute freely as long as you follow the license.
  * 本项目是一个开源项目，且遵循GNU通用公共授权协议。
@@ -12,24 +12,20 @@
  */
 package cn.academy.energy.api;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import cn.academy.energy.api.block.IWirelessGenerator;
-import cn.academy.energy.api.block.IWirelessMatrix;
-import cn.academy.energy.api.block.IWirelessNode;
-import cn.academy.energy.api.block.IWirelessReceiver;
-import cn.academy.energy.api.block.IWirelessUser;
+import cn.academy.energy.api.block.*;
 import cn.academy.energy.internal.NodeConn;
 import cn.academy.energy.internal.WiWorldData;
 import cn.academy.energy.internal.WirelessNet;
 import cn.liutils.util.mc.IBlockFilter;
 import cn.liutils.util.mc.WorldUtils;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * All kinds of funcs about wireless system.
@@ -37,96 +33,96 @@ import cn.liutils.util.mc.WorldUtils;
  */
 public class WirelessHelper {
 
-	//-----WirelessNetwork
-	
-	public static WirelessNet getWirelessNet(World world, String ssid) {
-		return WiWorldData.get(world).getNetwork(ssid);
-	}
-	
-	public static WirelessNet getWirelessNet(IWirelessMatrix matrix) {
-		TileEntity tile = (TileEntity) matrix;
-		return WiWorldData.get(tile.getWorld()).getNetwork(matrix);
-	}
-	
-	public static WirelessNet getWirelessNet(IWirelessNode node) {
-		TileEntity tile = (TileEntity) node;
-		return WiWorldData.get(tile.getWorld()).getNetwork(node);
-	}
-	
-	/**
-	 * @return Whether the wireless node is linked into a WEN
-	 */
-	public static boolean isNodeLinked(IWirelessNode node) {
-		return getWirelessNet(node) != null;
-	}
-	
-	/**
-	 * @return Whether the matrix is initialized with an SSID
-	 */
-	public static boolean isMatrixActive(IWirelessMatrix matrix) {
-		return getWirelessNet(matrix) != null;
-	}
-	
-	/**
-	 * Get a list of WirelessNet at the position within the given range.
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param range
-	 * @param max
-	 * @return
-	 */
-	public static Collection<WirelessNet> getNetInRange(World world, int x, int y, int z, double range, int max) {
-		WiWorldData data = WiWorldData.get(world);
-		return data.rangeSearch(x, y, z, range, max);
-	}
-	
-	//-----Node Connection
-	public static NodeConn getNodeConn(IWirelessNode node) {
-		TileEntity tile = (TileEntity) node;
-		return WiWorldData.get(tile.getWorld()).getNodeConnection(node);
-	}
-	
-	public static NodeConn getNodeConn(IWirelessUser gen) {
-		TileEntity tile = (TileEntity) gen;
-		return WiWorldData.get(tile.getWorld()).getNodeConnection(gen);
-	}
-	
-	public static boolean isReceiverLinked(IWirelessReceiver rec) {
-		return getNodeConn(rec) != null;
-	}
-	
-	public static boolean isGeneratorLinked(IWirelessGenerator gen) {
-		return getNodeConn(gen) != null;
-	}
-	
-	/**
-	 * Get a list of IWirelessNode that can reach the given position.
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @return nodes in the area, does not guarantee any order
-	 */
-	public static List<IWirelessNode> getNodesInRange(World world, double x, double y, double z) {
-		double range = 20.0;
-		List<BlockPos> list = WorldUtils.getBlocksWithin(world, x, y, z, range, 100, new IBlockFilter() {
+    //-----WirelessNetwork
 
-			@Override
-			public boolean accepts(World world, int x, int y, int z, Block block) {
-				TileEntity te = world.getTileEntity(new BlockPos(x, y, z));
-				return te instanceof IWirelessNode;
-			}
-			
-		});
-		
-		List<IWirelessNode> ret = new ArrayList();
-		for(BlockPos bp : list) {
-			ret.add((IWirelessNode) world.getTileEntity(bp));
-		}
-		
-		return ret;
-	}
-	
+    public static WirelessNet getWirelessNet(World world, String ssid) {
+        return WiWorldData.get(world).getNetwork(ssid);
+    }
+
+    public static WirelessNet getWirelessNet(IWirelessMatrix matrix) {
+        TileEntity tile = (TileEntity) matrix;
+        return WiWorldData.get(tile.getWorld()).getNetwork(matrix);
+    }
+
+    public static WirelessNet getWirelessNet(IWirelessNode node) {
+        TileEntity tile = (TileEntity) node;
+        return WiWorldData.get(tile.getWorld()).getNetwork(node);
+    }
+
+    /**
+     * @return Whether the wireless node is linked into a WEN
+     */
+    public static boolean isNodeLinked(IWirelessNode node) {
+        return getWirelessNet(node) != null;
+    }
+
+    /**
+     * @return Whether the matrix is initialized with an SSID
+     */
+    public static boolean isMatrixActive(IWirelessMatrix matrix) {
+        return getWirelessNet(matrix) != null;
+    }
+
+    /**
+     * Get a list of WirelessNet at the position within the given range.
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @param range
+     * @param max
+     * @return
+     */
+    public static Collection<WirelessNet> getNetInRange(World world, int x, int y, int z, double range, int max) {
+        WiWorldData data = WiWorldData.get(world);
+        return data.rangeSearch(x, y, z, range, max);
+    }
+
+    //-----Node Connection
+    public static NodeConn getNodeConn(IWirelessNode node) {
+        TileEntity tile = (TileEntity) node;
+        return WiWorldData.get(tile.getWorld()).getNodeConnection(node);
+    }
+
+    public static NodeConn getNodeConn(IWirelessUser gen) {
+        TileEntity tile = (TileEntity) gen;
+        return WiWorldData.get(tile.getWorld()).getNodeConnection(gen);
+    }
+
+    public static boolean isReceiverLinked(IWirelessReceiver rec) {
+        return getNodeConn(rec) != null;
+    }
+
+    public static boolean isGeneratorLinked(IWirelessGenerator gen) {
+        return getNodeConn(gen) != null;
+    }
+
+    /**
+     * Get a list of IWirelessNode that can reach the given position.
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @return nodes in the area, does not guarantee any order
+     */
+    public static List<IWirelessNode> getNodesInRange(World world, double x, double y, double z) {
+        double range = 20.0;
+        List<BlockPos> list = WorldUtils.getBlocksWithin(world, x, y, z, range, 100, new IBlockFilter() {
+
+            @Override
+            public boolean accepts(World world, int x, int y, int z, Block block) {
+                TileEntity te = world.getTileEntity(new BlockPos(x, y, z));
+                return te instanceof IWirelessNode;
+            }
+
+        });
+
+        List<IWirelessNode> ret = new ArrayList();
+        for (BlockPos bp : list) {
+            ret.add((IWirelessNode) world.getTileEntity(bp));
+        }
+
+        return ret;
+    }
+
 }

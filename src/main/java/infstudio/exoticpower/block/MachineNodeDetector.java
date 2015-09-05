@@ -1,9 +1,9 @@
 package infstudio.exoticpower.block;
 
-public class MachineNodeDetector extends BlockMachine{
+public class MachineNodeDetector extends BlockMachine {
 
-	public MachineNodeDetector() {
-		this.setUnlocalizedName("nodedetector");
-	}
-	
+    public MachineNodeDetector() {
+        this.setUnlocalizedName("nodedetector");
+    }
+
 }

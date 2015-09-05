@@ -1,9 +1,9 @@
 package infstudio.exoticpower.block;
 
-public class PipeDiamond extends BlockPipe{
+public class PipeDiamond extends BlockPipe {
 
-	public PipeDiamond() {
-		this.setUnlocalizedName("pipediamond");
-	}
-	
+    public PipeDiamond() {
+        this.setUnlocalizedName("pipediamond");
+    }
+
 }

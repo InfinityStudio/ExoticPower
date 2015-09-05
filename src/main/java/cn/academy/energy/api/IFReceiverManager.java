@@ -2,7 +2,7 @@
  * Copyright (c) Lambda Innovation, 2013-2015
  * 本作品版权由Lambda Innovation所有。
  * http://www.li-dev.cn/
- *
+ * <p/>
  * This project is open-source, and it is distributed under
  * the terms of GNU General Public License. You can modify
  * and distribute freely as long as you follow the license.
@@ -12,47 +12,47 @@
  */
 package cn.academy.energy.api;
 
-import net.minecraft.tileentity.TileEntity;
 import cn.academy.energy.api.block.IWirelessReceiver;
 import cn.academy.support.EnergyBlockHelper;
 import cn.academy.support.EnergyBlockHelper.IEnergyBlockManager;
 import cn.annoreg.core.Registrant;
+import net.minecraft.tileentity.TileEntity;
 
 /**
  * @author WeAthFolD
  */
 @Registrant
 public class IFReceiverManager implements IEnergyBlockManager {
-	
-	public static IFReceiverManager instance = new IFReceiverManager();
-	
-	private IFReceiverManager() {
-		EnergyBlockHelper.register(this);
-	}
 
-	@Override
-	public boolean isSupported(TileEntity tile) {
-		return tile instanceof IWirelessReceiver;
-	}
+    public static IFReceiverManager instance = new IFReceiverManager();
 
-	@Override
-	public double getEnergy(TileEntity tile) {
-		return 0;
-	}
+    private IFReceiverManager() {
+        EnergyBlockHelper.register(this);
+    }
 
-	@Override
-	public void setEnergy(TileEntity tile, double energy) {
-		// throw new UnsupportedOperationException();
-	}
+    @Override
+    public boolean isSupported(TileEntity tile) {
+        return tile instanceof IWirelessReceiver;
+    }
 
-	@Override
-	public double charge(TileEntity tile, double amt, boolean ignoreBandwidth) {
-		return ((IWirelessReceiver) tile).injectEnergy(amt);
-	}
+    @Override
+    public double getEnergy(TileEntity tile) {
+        return 0;
+    }
 
-	@Override
-	public double pull(TileEntity tile, double amt, boolean ignoreBandwidth) {
-		return ((IWirelessReceiver) tile).pullEnergy(amt);
-	}
+    @Override
+    public void setEnergy(TileEntity tile, double energy) {
+        // throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public double charge(TileEntity tile, double amt, boolean ignoreBandwidth) {
+        return ((IWirelessReceiver) tile).injectEnergy(amt);
+    }
+
+    @Override
+    public double pull(TileEntity tile, double amt, boolean ignoreBandwidth) {
+        return ((IWirelessReceiver) tile).pullEnergy(amt);
+    }
 
 }

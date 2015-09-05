@@ -11,29 +11,28 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class BlockMachine extends BlockContainer{
+public class BlockMachine extends BlockContainer {
 
-	public int Guiid;
-	
-	public BlockMachine() {
-		super(Material.rock);
-		this.setCreativeTab(ExoticPower.ept);
-		this.setHardness(0.5f);
-		this.setStepSound(soundTypeStone);
-		EPBlocks.blockList.add(this);
-	}
+    public int Guiid;
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return null;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		ItemStack stack = playerIn.inventory.mainInventory[playerIn.inventory.currentItem];
-		playerIn.openGui(ExoticPower.instance, Guiid, worldIn, pos.getX(), pos.getY(), pos.getZ());
+    public BlockMachine() {
+        super(Material.rock);
+        this.setCreativeTab(ExoticPower.ept);
+        this.setHardness(0.5f);
+        this.setStepSound(soundTypeStone);
+        EPBlocks.blockList.add(this);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return null;
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+        ItemStack stack = playerIn.inventory.mainInventory[playerIn.inventory.currentItem];
+        playerIn.openGui(ExoticPower.instance, Guiid, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
-	}
+    }
 
 }
