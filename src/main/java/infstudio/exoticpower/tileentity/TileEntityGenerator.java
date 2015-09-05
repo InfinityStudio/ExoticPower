@@ -20,6 +20,10 @@ public abstract class TileEntityGenerator extends TileEntityMachine implements I
      */
     private double energy;
 
+    /*
+      Maybe get by blockpos?
+    */
+
     public TileEntityGenerator(String _invName, int size, double _bufferSize, double _bandwidth) {
         super(_invName, size);
         bufferSize = _bufferSize;

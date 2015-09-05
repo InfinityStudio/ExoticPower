@@ -1,13 +1,13 @@
-package infstudio.exoticpower;
+package infstudio.exoticpower.EPCreativeTabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-public class ExoticPowerTab extends CreativeTabs {
+public class NormalExoticPowerTab extends CreativeTabs {
 
-    public ExoticPowerTab() {
-        super("ExoticPower");
+    public NormalExoticPowerTab() {
+        super("ExoticPower[Normal]");
     }
 
     @Override

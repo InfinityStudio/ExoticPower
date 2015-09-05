@@ -1,5 +1,7 @@
 package infstudio.exoticpower;
 
+import infstudio.exoticpower.EPCreativeTabs.MageExoticPowerTab;
+import infstudio.exoticpower.EPCreativeTabs.NormalExoticPowerTab;
 import infstudio.exoticpower.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -12,7 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = "ExoticPower", name = "ExoticPower", version = "1.0.0")
 public class ExoticPower {
 
-    public static final ExoticPowerTab ept = new ExoticPowerTab();
+    public static final NormalExoticPowerTab NEPTab = new NormalExoticPowerTab();
+    public static final MageExoticPowerTab MEPTab = new MageExoticPowerTab();
 
     @SidedProxy(clientSide = "infstudio.exoticpower.proxy.ClientProxy",
             serverSide = "infstudio.exoticpower.proxy.CommonProxy")
